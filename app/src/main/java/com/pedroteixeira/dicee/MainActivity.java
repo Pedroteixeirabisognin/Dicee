@@ -22,19 +22,28 @@ public class MainActivity extends AppCompatActivity {
         //Insere o conteúdo do layout com id android:id="@+id/rollButton", é necessário fazer um cast quando se está usando SDK menor que o 26
         rollButton =  findViewById(R.id.rollButton);
 
-        ImageView leftDice =  findViewById(R.id.image_leftDice);
+        final ImageView leftDice =  findViewById(R.id.image_leftDice);
 
-        ImageView rightDice = findViewById(R.id.image_rightDice);
+        final ImageView rightDice = findViewById(R.id.image_rightDice);
 
+        final int[] diceArray = {
+                R.drawable.dice1,
+                R.drawable.dice2,
+                R.drawable.dice3,
+                R.drawable.dice4,
+                R.drawable.dice5,
+                R.drawable.dice6};
         rollButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Random randomNumberGenerator = new Random();
-                //Gera um número randomicamente até 6
+                //Gera um número randomicamente de 0 a 5
                 int number = randomNumberGenerator.nextInt(6);
+                int number2 = randomNumberGenerator.nextInt(6);
 
-                Log.d("Diceee: ","The random number is: " + number);
+                leftDice.setImageResource(diceArray[number]);
+                rightDice.setImageResource(diceArray[number2]);
             }
         });
 
